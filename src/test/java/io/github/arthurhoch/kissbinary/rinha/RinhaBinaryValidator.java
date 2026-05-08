@@ -73,7 +73,7 @@ final class RinhaBinaryValidator {
     static boolean readLabel(byte[] data, int vectorIndex, HeaderInfo header) {
         BinaryReader reader = BinaryReader.from(data, RinhaBinaryFormat.ENDIANNESS);
         long labelOffset = RinhaBinaryFormat.labelDataOffset(header.vectorCount);
-        for (int i = 0; i < labelOffset; i++) {
+        for (long i = 0; i < labelOffset; i++) {
             reader.readByte();
         }
         long[] labelWords = reader.readLongArray(header.labelWordCount);
