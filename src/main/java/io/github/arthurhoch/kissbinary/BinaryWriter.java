@@ -413,7 +413,7 @@ public final class BinaryWriter {
         int newCapacity = buffer.length;
         while (newCapacity < required) {
             int grown = newCapacity + (newCapacity >> 1) + 1;
-            if (grown <= newCapacity || grown < 0) {
+            if (grown < 0) {
                 newCapacity = required;
                 break;
             }
