@@ -96,7 +96,11 @@ final class RinhaJsonLineParser {
 
         double[] result = new double[parts.length];
         for (int i = 0; i < parts.length; i++) {
-            result[i] = Double.parseDouble(parts[i].trim());
+            try {
+                result[i] = Double.parseDouble(parts[i].trim());
+            } catch (NumberFormatException e) {
+                return null;
+            }
         }
         return result;
     }
