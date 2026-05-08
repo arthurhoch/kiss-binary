@@ -65,10 +65,10 @@ class RinhaFullDatasetTest {
         byte[] data = Files.readAllBytes(kbin);
         RinhaBinaryValidator.HeaderInfo header = RinhaBinaryValidator.validateHeader(data);
 
-        short[] firstVec = RinhaBinaryValidator.readVector(data, 0, header);
+        short[] firstVec = RinhaBinaryValidator.readVector(data, 0);
         assertEquals(RinhaBinaryFormat.PHYSICAL_DIMENSIONS, firstVec.length);
 
-        short[] lastVec = RinhaBinaryValidator.readVector(data, header.vectorCount() - 1, header);
+        short[] lastVec = RinhaBinaryValidator.readVector(data, header.vectorCount() - 1);
         assertEquals(RinhaBinaryFormat.PHYSICAL_DIMENSIONS, lastVec.length);
     }
 
@@ -94,7 +94,7 @@ class RinhaFullDatasetTest {
         byte[] data = Files.readAllBytes(kbin);
         RinhaBinaryValidator.HeaderInfo header = RinhaBinaryValidator.validateHeader(data);
 
-        short[] heapVec = RinhaBinaryValidator.readVector(data, 0, header);
+        short[] heapVec = RinhaBinaryValidator.readVector(data, 0);
         short[] mmapVec = RinhaBinaryValidator.readVectorMapped(kbin, 0);
         assertArrayEquals(heapVec, mmapVec);
     }

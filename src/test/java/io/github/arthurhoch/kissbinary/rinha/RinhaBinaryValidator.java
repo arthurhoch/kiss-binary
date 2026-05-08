@@ -54,7 +54,7 @@ final class RinhaBinaryValidator {
                 labelWordCount, reserved1, reserved2);
     }
 
-    static short[] readVector(byte[] data, int vectorIndex, HeaderInfo header) {
+    static short[] readVector(byte[] data, int vectorIndex) {
         BinaryReader reader = BinaryReader.from(data, RinhaBinaryFormat.ENDIANNESS);
         long offset = RinhaBinaryFormat.vectorOffset(vectorIndex);
         for (long i = 0; i < offset; i++) {

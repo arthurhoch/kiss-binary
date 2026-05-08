@@ -55,12 +55,12 @@ class RinhaSyntheticDatasetTest {
         byte[] data = Files.readAllBytes(kbin);
         RinhaBinaryValidator.HeaderInfo header = RinhaBinaryValidator.validateHeader(data);
 
-        short[] firstVec = RinhaBinaryValidator.readVector(data, 0, header);
+        short[] firstVec = RinhaBinaryValidator.readVector(data, 0);
         assertEquals(RinhaBinaryFormat.PHYSICAL_DIMENSIONS, firstVec.length);
         assertEquals(0, firstVec[RinhaBinaryFormat.LOGICAL_DIMENSIONS]);
         assertEquals(0, firstVec[RinhaBinaryFormat.LOGICAL_DIMENSIONS + 1]);
 
-        short[] lastVec = RinhaBinaryValidator.readVector(data, VECTOR_COUNT - 1, header);
+        short[] lastVec = RinhaBinaryValidator.readVector(data, VECTOR_COUNT - 1);
         assertEquals(RinhaBinaryFormat.PHYSICAL_DIMENSIONS, lastVec.length);
         assertEquals(0, lastVec[RinhaBinaryFormat.LOGICAL_DIMENSIONS]);
         assertEquals(0, lastVec[RinhaBinaryFormat.LOGICAL_DIMENSIONS + 1]);
@@ -88,7 +88,7 @@ class RinhaSyntheticDatasetTest {
         byte[] data = Files.readAllBytes(kbin);
         RinhaBinaryValidator.HeaderInfo header = RinhaBinaryValidator.validateHeader(data);
 
-        short[] expected = RinhaBinaryValidator.readVector(data, 0, header);
+        short[] expected = RinhaBinaryValidator.readVector(data, 0);
         short[] actual = RinhaBinaryValidator.readVectorMapped(kbin, 0);
         assertArrayEquals(expected, actual);
     }
@@ -101,7 +101,7 @@ class RinhaSyntheticDatasetTest {
 
         int[] testIndices = {0, 1, 42, 499, 500, 999, VECTOR_COUNT - 1};
         for (int idx : testIndices) {
-            short[] expected = RinhaBinaryValidator.readVector(data, idx, header);
+            short[] expected = RinhaBinaryValidator.readVector(data, idx);
             short[] actual = RinhaBinaryValidator.readVectorMapped(kbin, idx);
             assertArrayEquals(expected, actual, "Mismatch at vector index " + idx);
         }
