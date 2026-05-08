@@ -413,10 +413,6 @@ public final class BinaryWriter {
         int newCapacity = buffer.length;
         while (newCapacity < required) {
             int grown = newCapacity + (newCapacity >> 1) + 1;
-            if (grown < 0) {
-                newCapacity = required;
-                break;
-            }
             newCapacity = Math.max(grown, required);
         }
         buffer = Arrays.copyOf(buffer, newCapacity);
