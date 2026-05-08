@@ -1,0 +1,33 @@
+# Build output
+target/
+*.class
+
+# IDE and editor files
+.idea/
+.vscode/
+*.iml
+
+# OS files
+.DS_Store
+
+# Logs and crash reports
+*.log
+hs_err_pid*
+replay_pid*
+
+# Local environment and secrets
+.env
+*.env
+*.pem
+*.key
+*.p12
+*.pfx
+private-key.asc
+secrets.*
+settings-local.xml
+
+# Benchmark build scratch output
+benchmark-results/jmh-classes/
+benchmark-results/**/jmh-classes/
+benchmark-results/**/*.tmp
+benchmark-results/**/tmp/

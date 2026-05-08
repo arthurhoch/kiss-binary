@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+
+      - name: Verify
+        run: mvn -B clean verify
+
+      - name: Generate Javadocs
+        run: mvn -B javadoc:javadoc
+
+      - name: Verify zero compile-scope dependencies
+        run: |
+          mvn -B dependency:list -DincludeScope=compile -DoutputFile=target/compile-dependencies.txt -DappendOutput=false
+          cat target/compile-dependencies.txt
+          if ! grep -Eq '^[[:space:]]+none$' target/compile-dependencies.txt; then
+            echo "Compile-scope dependencies are not allowed for kiss-binary."
+            exit 1
+          fi

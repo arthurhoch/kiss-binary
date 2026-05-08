@@ -1,0 +1,85 @@
+name: Maven Central Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: "Release version already present in pom.xml, for example 0.1.0"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+
+      - name: Verify release version
+        run: |
+          pom_version="$(mvn -q -DforceStdout help:evaluate -Dexpression=project.version)"
+          if [ "$pom_version" != "${{ inputs.release_version }}" ]; then
+            echo "pom.xml version '$pom_version' does not match requested release version '${{ inputs.release_version }}'."
+            exit 1
+          fi
+          if printf '%s' "$pom_version" | grep -q -- '-SNAPSHOT'; then
+            echo "Refusing to publish a SNAPSHOT version."
+            exit 1
+          fi
+
+      - name: Verify
+        run: mvn -B clean verify
+
+      - name: Generate Javadocs
+        run: mvn -B javadoc:javadoc
+
+      - name: Verify zero compile-scope dependencies
+        run: |
+          mvn -B dependency:list -DincludeScope=compile -DoutputFile=target/compile-dependencies.txt -DappendOutput=false
+          cat target/compile-dependencies.txt
+          if ! grep -Eq '^[[:space:]]+none$' target/compile-dependencies.txt; then
+            echo "Compile-scope dependencies are not allowed for kiss-binary."
+            exit 1
+          fi
+
+      - name: Configure Maven Central credentials
+        env:
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+        run: |
+          mkdir -p "$HOME/.m2"
+          cat > "$HOME/.m2/settings.xml" <<SETTINGS
+          <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+            <servers>
+              <server>
+                <id>central</id>
+                <username>${MAVEN_CENTRAL_USERNAME}</username>
+                <password>${MAVEN_CENTRAL_PASSWORD}</password>
+              </server>
+            </servers>
+          </settings>
+          SETTINGS
+
+      - name: Import GPG key
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+        run: printf '%s' "$GPG_PRIVATE_KEY" | gpg --batch --import
+
+      - name: Publish to Maven Central
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: mvn -B -Prelease -Dgpg.passphrase="$GPG_PASSPHRASE" deploy
