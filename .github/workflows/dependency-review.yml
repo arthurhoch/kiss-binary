@@ -2,7 +2,7 @@ name: Dependency Review
 
 on:
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 permissions:
   contents: read
@@ -10,11 +10,11 @@ permissions:
 
 jobs:
   dependency-review:
-    name: dependency-review
+    name: Dependency Review
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
+      - name: Checkout
         uses: actions/checkout@v6
 
       - name: Review dependency changes

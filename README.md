@@ -224,6 +224,7 @@ See [docs/rinha-dataset-benchmark.md](docs/rinha-dataset-benchmark.md) for detai
 - [Testing Report](docs/testing-report.md)
 - [Safe Code Cleanup](docs/code-cleanup.md)
 - [Security](docs/security.md)
+- [Security Hardening](docs/security-hardening.md)
 - [Release](docs/release.md)
 - [Maven Central](docs/maven-central.md)
 - [Error Handling](ERROR_HANDLING.md)
@@ -259,7 +260,7 @@ mvn -Prinha-benchmark test-compile
 
 ## Security and Quality
 
-GitHub Actions run CI, CodeQL, Dependency Review, GitHub Pages deployment, and the manual Maven Central release workflow. Dependabot tracks Maven and GitHub Actions updates. CI verifies Javadocs and zero compile-scope dependencies. SpotBugs and OWASP Dependency-Check are optional Maven profiles so normal CI stays fast.
+GitHub Actions run CI, CodeQL, Dependency Review, OpenSSF Scorecard, GitHub Pages deployment, and the manual Maven Central release workflow. Dependabot tracks Maven and GitHub Actions updates. CI verifies Javadocs and zero compile-scope dependencies. SpotBugs and OWASP Dependency-Check are optional Maven profiles so normal CI stays fast. See [Security Hardening](docs/security-hardening.md).
 
 JaCoCo coverage is generated during `verify`. Read the HTML report at `target/site/jacoco/index.html`; use `target/site/jacoco/jacoco.xml` for Codecov or Sonar if those services are configured later. No coverage badge is shown until a real external coverage service is configured.
 
