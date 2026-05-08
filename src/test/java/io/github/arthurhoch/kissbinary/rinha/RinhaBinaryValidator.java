@@ -57,7 +57,7 @@ final class RinhaBinaryValidator {
     static short[] readVector(byte[] data, int vectorIndex, HeaderInfo header) {
         BinaryReader reader = BinaryReader.from(data, RinhaBinaryFormat.ENDIANNESS);
         long offset = RinhaBinaryFormat.vectorOffset(vectorIndex);
-        for (int i = 0; i < offset; i++) {
+        for (long i = 0; i < offset; i++) {
             reader.readByte();
         }
         return reader.readShortArray(RinhaBinaryFormat.PHYSICAL_DIMENSIONS);
