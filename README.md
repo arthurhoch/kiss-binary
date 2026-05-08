@@ -6,7 +6,7 @@ Zero external dependencies. No framework. No object serialization. No schema eng
 
 ## Status
 
-**Initial implementation complete.** Local tests and Maven build pass. JMH benchmark results are available under [benchmark-results/](benchmark-results/). Not yet published to Maven Central. See [CHANGELOG.md](CHANGELOG.md) for details.
+**Initial implementation complete.** Local tests and Maven build pass. JMH benchmark results are available under [benchmark-results/](benchmark-results/). Version 0.1.0 is published to Maven Central. See [CHANGELOG.md](CHANGELOG.md) for details.
 
 ## What It Is
 
@@ -106,7 +106,7 @@ BinaryReader reader = BinaryReader.from(data, Endianness.LITTLE_ENDIAN);
 </dependency>
 ```
 
-Not yet published to Maven Central.
+Available from Maven Central.
 
 ## When to Use KissBinary
 
