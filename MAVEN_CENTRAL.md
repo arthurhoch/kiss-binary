@@ -9,7 +9,6 @@ Do not publish future releases until code, tests, documentation, benchmarks, rel
 - **groupId**: `io.github.arthurhoch`
 - **artifactId**: `kiss-binary`
 - **Latest stable version**: `0.1.0`
-- **Current development version**: `0.1.1-SNAPSHOT`
 
 ```xml
 <dependency>

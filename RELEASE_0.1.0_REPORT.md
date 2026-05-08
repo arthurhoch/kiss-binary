@@ -9,7 +9,7 @@ Date: 2026-05-08
 - GitHub repository: <https://github.com/arthurhoch/kiss-binary>
 - GitHub release: <https://github.com/arthurhoch/kiss-binary/releases/tag/v0.1.0>
 - Publishing path: manual GitHub Actions workflow `.github/workflows/release.yml`
-- Next development version: `0.1.1-SNAPSHOT`
+- Next development version: next `-SNAPSHOT`
 
 ## 2. Commands Run
 
@@ -91,7 +91,7 @@ gh run watch --repo arthurhoch/kiss-binary 25553119506 --exit-status
 - After changing `pom.xml` to `0.1.0`, `mvn -B dependency:list -DincludeScope=compile` passed with no compile-scope dependencies.
 - After changing `pom.xml` to `0.1.0`, `mvn -B -Pbenchmarks clean package` passed.
 - The full JMH command completed and wrote `target/release-0.1.0-jmh-results.json`.
-- After bumping to `0.1.1-SNAPSHOT`, `mvn -B clean verify` passed with 120 tests, 0 failures, 0 errors, and 6 skipped full-dataset tests.
+- After bumping to the next development snapshot, `mvn -B clean verify` passed with 120 tests, 0 failures, 0 errors, and 6 skipped full-dataset tests.
 - After pushing the next-snapshot commit, GitHub Actions CI passed on run `25553119499`.
 - After pushing the next-snapshot commit, CodeQL passed on run `25553119506`.
 
@@ -144,7 +144,7 @@ Coordinates:
 
 ## 8. Next Snapshot Version
 
-The project was bumped to `0.1.1-SNAPSHOT` after successful publication and release creation.
+The project was bumped to the next development snapshot after successful publication and release creation.
 
 ## 9. Manual Follow-Up Needed
 
@@ -163,6 +163,6 @@ The project was bumped to `0.1.1-SNAPSHOT` after successful publication and rele
 - Working tree after the next-snapshot push: clean.
 - Current branch: `main`.
 - Next-snapshot commit: `0dc2440 Prepare next development iteration`.
-- Current project version after release: `0.1.1-SNAPSHOT`.
+- Current project version after release: next `-SNAPSHOT`.
 - `v0.1.0` remains present locally and on origin.
 - CodeQL emitted one non-blocking annotation: it could not build an overlay-base database with manual build mode and fell back to a normal full database.

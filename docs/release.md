@@ -6,8 +6,6 @@ KissBinary releases are manual and must not be published from local machines out
 
 Latest stable release: `0.1.0`.
 
-Current development version: `0.1.1-SNAPSHOT`.
-
 ## Local Preflight
 
 ```bash
