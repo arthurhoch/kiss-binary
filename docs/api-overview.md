@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # API Overview
 
 **Status: Initial implementation complete.**

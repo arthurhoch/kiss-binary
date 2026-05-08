@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Security Hardening
 
 KissBinary uses free GitHub-native and open-source checks. Normal CI, CodeQL, Dependency Review, Dependabot, and OpenSSF Scorecard do not require repository secrets.

@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Examples
 
 **Status: Initial implementation complete.**

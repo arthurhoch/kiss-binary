@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Rinha Dataset Benchmark
 
 This document explains the Rinha de Backend 2026 dataset benchmark for kiss-binary.

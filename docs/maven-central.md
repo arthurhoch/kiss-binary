@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Maven Central
 
 KissBinary is published through the Sonatype Central Publisher Portal.
