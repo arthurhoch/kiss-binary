@@ -70,6 +70,13 @@ Post-release:
 
 ```bash
 mvn -B clean verify
+git status --short
+git log --oneline --decorate -5
+git tag --list "v0.1.0"
+mvn -q -DforceStdout help:evaluate -Dexpression=project.version
+gh run list --repo arthurhoch/kiss-binary --limit=5
+gh run watch --repo arthurhoch/kiss-binary 25553119499 --exit-status
+gh run watch --repo arthurhoch/kiss-binary 25553119506 --exit-status
 ```
 
 ## 3. Local Verification Results
@@ -85,6 +92,8 @@ mvn -B clean verify
 - After changing `pom.xml` to `0.1.0`, `mvn -B -Pbenchmarks clean package` passed.
 - The full JMH command completed and wrote `target/release-0.1.0-jmh-results.json`.
 - After bumping to `0.1.1-SNAPSHOT`, `mvn -B clean verify` passed with 120 tests, 0 failures, 0 errors, and 6 skipped full-dataset tests.
+- After pushing the next-snapshot commit, GitHub Actions CI passed on run `25553119499`.
+- After pushing the next-snapshot commit, CodeQL passed on run `25553119506`.
 
 ## 4. Tag Information
 
@@ -149,3 +158,11 @@ The project was bumped to `0.1.1-SNAPSHOT` after successful publication and rele
 - No additional version tags were created beyond `v0.1.0`.
 - No Maven Central release was attempted before local verification, GitHub secrets validation, and successful workflow execution.
 
+## 11. Final Repository State
+
+- Working tree after the next-snapshot push: clean.
+- Current branch: `main`.
+- Next-snapshot commit: `0dc2440 Prepare next development iteration`.
+- Current project version after release: `0.1.1-SNAPSHOT`.
+- `v0.1.0` remains present locally and on origin.
+- CodeQL emitted one non-blocking annotation: it could not build an overlay-base database with manual build mode and fell back to a normal full database.
