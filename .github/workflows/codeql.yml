@@ -7,6 +7,7 @@ on:
     branches: [main]
   schedule:
     - cron: "31 3 * * 1"
+  workflow_dispatch:
 
 permissions:
   actions: read
@@ -34,9 +35,10 @@ jobs:
         with:
           languages: java
           build-mode: manual
+          queries: security-and-quality
 
-      - name: Build
-        run: mvn -B -DskipTests compile
+      - name: Build for CodeQL
+        run: mvn -B -DskipTests package
 
       - name: Perform CodeQL analysis
         uses: github/codeql-action/analyze@v4
