@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Security
 
 KissBinary treats binary input as untrusted. The core security model is explicit validation before reads or allocation.

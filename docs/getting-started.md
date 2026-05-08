@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Getting Started
 
 **Status: Initial implementation complete.**

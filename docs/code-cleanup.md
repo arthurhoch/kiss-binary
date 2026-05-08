@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Safe Code Cleanup
 
 KissBinary is a Java 17 binary IO library with a small public API and performance-sensitive internals. Cleanup must preserve binary safety, explicit layout behavior, benchmark evidence, and release compatibility.

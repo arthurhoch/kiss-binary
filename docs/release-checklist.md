@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Release Checklist
 
 **Status: Initial implementation complete; not yet released.**

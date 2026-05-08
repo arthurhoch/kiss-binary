@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Release
 
 KissBinary releases are manual and must not be published from local machines outside the documented release process.

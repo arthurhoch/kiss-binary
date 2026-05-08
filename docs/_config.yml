@@ -1,0 +1,15 @@
+title: KissBinary
+description: Tiny zero-dependency Java 17+ binary IO library for explicit primitive binary formats.
+url: "https://arthurhoch.github.io"
+baseurl: "/kiss-binary"
+repo_url: "https://github.com/arthurhoch/kiss-binary"
+maven_url: "https://central.sonatype.com/artifact/io.github.arthurhoch/kiss-binary"
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default

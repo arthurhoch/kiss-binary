@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # AI Usage Guide
 
 This guide explains how to use AI coding agents safely with the KissBinary repository.

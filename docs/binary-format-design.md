@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Binary Format Design
 
 **Status: Initial implementation complete.**

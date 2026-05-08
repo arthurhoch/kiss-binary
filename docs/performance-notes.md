@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Performance Notes
 
 **Status: Initial implementation complete; local JMH benchmark results captured.**
