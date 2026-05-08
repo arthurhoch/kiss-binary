@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <name>KissBinary</name>
-    <description>Zero-dependency Java binary IO for explicit primitive binary formats.</description>
+    <description>Tiny zero-dependency Java 17+ binary IO library for explicit primitive binary formats.</description>
     <url>https://github.com/arthurhoch/kiss-binary</url>
 
     <licenses>

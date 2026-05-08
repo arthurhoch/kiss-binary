@@ -1,14 +1,15 @@
 # KissBinary — Maven Central Publishing Guide
 
-**Status: Initial implementation under release review; do not publish yet.**
+**Status: Version `0.1.0` is published on Maven Central.**
 
-Do not publish until code, tests, documentation, benchmarks, release workflow, credentials, and release tag are complete.
+Do not publish future releases until code, tests, documentation, benchmarks, release workflow, credentials, and release tag are complete.
 
 ## Maven Coordinates
 
 - **groupId**: `io.github.arthurhoch`
 - **artifactId**: `kiss-binary`
-- **Initial version**: `0.1.0-SNAPSHOT`
+- **Latest stable version**: `0.1.0`
+- **Current development version**: `0.1.1-SNAPSHOT`
 
 ```xml
 <dependency>
@@ -96,7 +97,7 @@ The `pom.xml` must include:
 ```xml
 <groupId>io.github.arthurhoch</groupId>
 <artifactId>kiss-binary</artifactId>
-<version>0.1.0-SNAPSHOT</version>
+<version>0.1.0</version>
 <packaging>jar</packaging>
 
 <name>KissBinary</name>
@@ -140,7 +141,7 @@ The `pom.xml` must include:
 
 ## Do Not
 
-- Do not publish until implementation and tests are complete.
+- Do not publish future releases until implementation and tests are complete.
 - Do not publish from a local machine. Use GitHub Actions only.
 - Do not commit secrets to the repository.
 - Do not skip GPG signing.

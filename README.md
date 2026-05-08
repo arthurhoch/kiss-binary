@@ -1,18 +1,33 @@
 # KissBinary
 
-A tiny, zero-dependency Java 17+ binary IO library for reading and writing primitive binary formats.
+Tiny zero-dependency Java 17+ binary IO library for explicit primitive binary formats.
 
-Zero external dependencies. No framework. No object serialization. No schema engine.
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.arthurhoch/kiss-binary.svg)](https://central.sonatype.com/artifact/io.github.arthurhoch/kiss-binary)
+[![Java](https://img.shields.io/badge/Java-17%2B-blue.svg)](https://openjdk.org/projects/jdk/17/)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE.txt)
+[![CI](https://github.com/arthurhoch/kiss-binary/actions/workflows/ci.yml/badge.svg)](https://github.com/arthurhoch/kiss-binary/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/arthurhoch/kiss-binary/actions/workflows/codeql.yml/badge.svg)](https://github.com/arthurhoch/kiss-binary/actions/workflows/codeql.yml)
+[![Docs](https://github.com/arthurhoch/kiss-binary/actions/workflows/pages.yml/badge.svg)](https://github.com/arthurhoch/kiss-binary/actions/workflows/pages.yml)
+
+Part of the KISS Java Libraries family: small, explicit, zero-dependency Java 17+ libraries. Each project is independent. Use only the modules you need.
 
 ## Status
 
-**Initial implementation complete.** Local tests and Maven build pass. JMH benchmark results are available under [benchmark-results/](benchmark-results/). Version 0.1.0 is published to Maven Central. See [CHANGELOG.md](CHANGELOG.md) for details.
+Latest stable release: `0.1.0`.
+
+Current development version: `0.1.1-SNAPSHOT`.
+
+The `0.1.0` artifact is published on Maven Central and the `v0.1.0` GitHub release is available. JMH benchmark results are available under [benchmark-results/](benchmark-results/). See [CHANGELOG.md](CHANGELOG.md) for details.
 
 ## What It Is
 
 KissBinary reads and writes explicit binary data: primitives, primitive arrays, and binary headers with magic/version validation. It gives you direct control over byte layout, endianness, and structure without hiding anything behind a framework.
 
 It exists for cases where you need to read or write compact binary data - indexes, caches, datasets, static data, snapshots - and you want a small, predictable library that does exactly what you tell it to.
+
+## Why this exists
+
+KissBinary exists for Java projects that need explicit primitive binary formats without Java object serialization, schema compilers, IDL tooling, reflection mapping, or runtime dependencies.
 
 ## What It Is Not
 
@@ -34,6 +49,15 @@ It exists for cases where you need to read or write compact binary data - indexe
 - **Predictable performance**: No reflection, no object serialization, no hidden allocation.
 - **Rich errors**: Include file offset, expected vs actual values, clear messages.
 - **Safe defaults**: Bounds-checked, EOF-safe, explicit endianness.
+
+## Design Principles
+
+- KISS: users define the binary layout and the library reads/writes primitives.
+- Zero production dependencies.
+- Java 17+ standard APIs.
+- Explicit endianness and caller-owned resource lifetimes.
+- Bounds checking before reads, safe EOF handling, and predictable `BinaryFormatException` messages.
+- Performance claims backed by JMH results, not assumptions.
 
 ## Quick Examples
 
@@ -96,7 +120,7 @@ BinaryWriter writer = BinaryWriter.create(Endianness.LITTLE_ENDIAN);
 BinaryReader reader = BinaryReader.from(data, Endianness.LITTLE_ENDIAN);
 ```
 
-## Maven
+## Installation
 
 ```xml
 <dependency>
@@ -130,15 +154,19 @@ Available from Maven Central.
 - If you need compression, use a compression library.
 - If you need encryption, use an encryption library.
 
-## Ecosystem
+## Related KISS Projects
 
-KissBinary is a sibling of:
+These libraries are independent, zero-dependency Java 17+ projects. Use only the modules you need.
 
-- [kiss-requests](https://github.com/arthurhoch/kiss-requests) — tiny HTTP client library
-- [kiss-json](https://github.com/arthurhoch/kiss-json) — tiny JSON library
-- [kiss-server](https://github.com/arthurhoch/kiss-server) — tiny HTTP server library
+| Project | Purpose |
+|---|---|
+| [kiss-json](https://github.com/arthurhoch/kiss-json) | Field-based JSON serialization and deserialization. |
+| [kiss-requests](https://github.com/arthurhoch/kiss-requests) | Simple HTTP client built on Java HttpClient. |
+| [kiss-server](https://github.com/arthurhoch/kiss-server) | Small HTTP/1.1 server for simple REST-style applications. |
+| [kiss-config](https://github.com/arthurhoch/kiss-config) | Configuration loading from properties, .env files, system properties, and environment variables. |
+| [kiss-binary](https://github.com/arthurhoch/kiss-binary) | Explicit binary IO for primitive binary formats. |
 
-Each library is independent. They do not depend on each other. They compose naturally:
+The projects compose naturally without depending on each other:
 
 ```java
 // Read binary index at startup
@@ -193,6 +221,10 @@ See [docs/rinha-dataset-benchmark.md](docs/rinha-dataset-benchmark.md) for detai
 - [Implementation Plan](IMPLEMENTATION_PLAN.md)
 - [API Design](API_DESIGN.md)
 - [Performance](PERFORMANCE.md)
+- [Testing Report](docs/testing-report.md)
+- [Security](docs/security.md)
+- [Release](docs/release.md)
+- [Maven Central](docs/maven-central.md)
 - [Error Handling](ERROR_HANDLING.md)
 - [Binary Format Guide](BINARY_FORMAT_GUIDE.md)
 - [Examples](EXAMPLES.md)
@@ -200,6 +232,30 @@ See [docs/rinha-dataset-benchmark.md](docs/rinha-dataset-benchmark.md) for detai
 - [Release Guide](RELEASE.md)
 - [Maven Central Publishing](MAVEN_CENTRAL.md)
 - [Architecture](.github/architecture/index.md)
+
+## Requirements
+
+- Java 17 or newer.
+- Maven for building from source.
+
+## Build
+
+```bash
+mvn -B clean verify
+mvn -B javadoc:javadoc
+mvn -B dependency:list -DincludeScope=compile
+```
+
+Additional configured profiles:
+
+```bash
+mvn -Pbenchmarks test-compile
+mvn -Prinha-benchmark test-compile
+```
+
+## Security and Quality
+
+GitHub Actions run CI, CodeQL, Dependency Review, GitHub Pages deployment, and the manual Maven Central release workflow. Dependabot tracks Maven and GitHub Actions updates. CI verifies Javadocs and zero compile-scope dependencies.
 
 ## License
 

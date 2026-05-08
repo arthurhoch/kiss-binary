@@ -4,9 +4,9 @@
 
 | Version | Supported |
 | ------- | --------- |
-| 0.1.x   | Planning (not yet released) |
+| 0.1.x   | Supported |
 
-KissBinary has not been published to Maven Central yet. Security support applies to released versions once artifacts are available.
+KissBinary `0.1.0` is published to Maven Central. Security support applies to released `0.1.x` artifacts and the active development line.
 
 ## Reporting a Vulnerability
 
