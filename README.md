@@ -222,6 +222,7 @@ See [docs/rinha-dataset-benchmark.md](docs/rinha-dataset-benchmark.md) for detai
 - [API Design](API_DESIGN.md)
 - [Performance](PERFORMANCE.md)
 - [Testing Report](docs/testing-report.md)
+- [Safe Code Cleanup](docs/code-cleanup.md)
 - [Security](docs/security.md)
 - [Release](docs/release.md)
 - [Maven Central](docs/maven-central.md)
@@ -242,6 +243,7 @@ See [docs/rinha-dataset-benchmark.md](docs/rinha-dataset-benchmark.md) for detai
 
 ```bash
 mvn -B clean verify
+mvn -B test jacoco:report
 mvn -B javadoc:javadoc
 mvn -B dependency:list -DincludeScope=compile
 ```
@@ -249,13 +251,19 @@ mvn -B dependency:list -DincludeScope=compile
 Additional configured profiles:
 
 ```bash
+mvn -Pspotbugs verify
+mvn -Pdependency-check verify
 mvn -Pbenchmarks test-compile
 mvn -Prinha-benchmark test-compile
 ```
 
 ## Security and Quality
 
-GitHub Actions run CI, CodeQL, Dependency Review, GitHub Pages deployment, and the manual Maven Central release workflow. Dependabot tracks Maven and GitHub Actions updates. CI verifies Javadocs and zero compile-scope dependencies.
+GitHub Actions run CI, CodeQL, Dependency Review, GitHub Pages deployment, and the manual Maven Central release workflow. Dependabot tracks Maven and GitHub Actions updates. CI verifies Javadocs and zero compile-scope dependencies. SpotBugs and OWASP Dependency-Check are optional Maven profiles so normal CI stays fast.
+
+JaCoCo coverage is generated during `verify`. Read the HTML report at `target/site/jacoco/index.html`; use `target/site/jacoco/jacoco.xml` for Codecov or Sonar if those services are configured later. No coverage badge is shown until a real external coverage service is configured.
+
+Before deleting code, follow [Safe Code Cleanup](docs/code-cleanup.md): distinguish internal code from public API, search source/tests/docs/examples/benchmarks, inspect coverage, run Javadocs, and document user-visible removals in `CHANGELOG.md`. Before release, run the normal build, Javadocs, coverage generation, compile-scope dependency check, and any relevant optional quality/security/benchmark profiles.
 
 ## License
 

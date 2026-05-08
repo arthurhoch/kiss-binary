@@ -19,3 +19,27 @@ The production artifact has zero external dependencies. JUnit, JMH, build plugin
 Report vulnerabilities privately through GitHub Security Advisories when possible. Do not open a public issue for an undisclosed vulnerability.
 
 See the repository [security policy](https://github.com/arthurhoch/kiss-binary/blob/main/SECURITY.md).
+
+## Quality And Coverage
+
+Normal CI runs the fast Maven build:
+
+```bash
+mvn -B clean verify
+```
+
+JaCoCo coverage is generated during `verify`:
+
+```text
+target/site/jacoco/jacoco.xml
+target/site/jacoco/index.html
+```
+
+Optional local security and static-analysis checks are:
+
+```bash
+mvn -Pdependency-check verify
+mvn -Pspotbugs verify
+```
+
+Use [code-cleanup.md](code-cleanup.md) before deleting code, especially public API, binary parsing, bounds checks, header validation, memory-mapped reads, or benchmark-referenced behavior.

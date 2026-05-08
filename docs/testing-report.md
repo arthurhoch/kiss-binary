@@ -15,8 +15,11 @@ Date: 2026-05-08
 
 ```bash
 mvn -B clean verify
+mvn -B test jacoco:report
 mvn -B javadoc:javadoc
 mvn -B dependency:list -DincludeScope=compile
+mvn -B -Pspotbugs -DskipTests verify
+mvn -B -Pdependency-check -Ddependency-check.skip=true -DskipTests verify
 mvn -B -Pbenchmarks test-compile
 mvn -B -Prinha-benchmark test-compile
 ```
@@ -24,8 +27,11 @@ mvn -B -Prinha-benchmark test-compile
 Results:
 
 - `mvn -B clean verify`: passing, 120 tests, 0 failures, 0 errors, 6 skipped full-dataset tests.
+- `mvn -B test jacoco:report`: passing; reports generated at `target/site/jacoco/jacoco.xml` and `target/site/jacoco/index.html`.
 - `mvn -B javadoc:javadoc`: passing.
 - `mvn -B dependency:list -DincludeScope=compile`: passing, no compile-scope production dependencies beyond the project artifact.
+- `mvn -B -Pspotbugs -DskipTests verify`: passing profile validation.
+- `mvn -B -Pdependency-check -Ddependency-check.skip=true -DskipTests verify`: passing profile validation with Dependency-Check database scanning intentionally skipped.
 - `mvn -B -Pbenchmarks test-compile`: passing.
 - `mvn -B -Prinha-benchmark test-compile`: passing.
 
