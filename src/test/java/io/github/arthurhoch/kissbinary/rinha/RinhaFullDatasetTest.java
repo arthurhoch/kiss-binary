@@ -92,7 +92,7 @@ class RinhaFullDatasetTest {
 
         Path kbin = convertDataset(dir);
         byte[] data = Files.readAllBytes(kbin);
-        RinhaBinaryValidator.HeaderInfo header = RinhaBinaryValidator.validateHeader(data);
+        RinhaBinaryValidator.validateHeader(data);
 
         short[] heapVec = RinhaBinaryValidator.readVector(data, 0);
         short[] mmapVec = RinhaBinaryValidator.readVectorMapped(kbin, 0);
