@@ -70,6 +70,7 @@ reader.expectVersion(1);</code></pre>
   <div class="doc-grid">
     <a href="getting-started.html">Getting Started<span>Install and write the first binary payload.</span></a>
     <a href="api-overview.html">API Overview<span>Reader, writer, mapped reader, and exceptions.</span></a>
+    <a href="skills/index.html">AI Skills<span>Versioned Markdown skill files for AI-assisted usage.</span></a>
     <a href="examples.html">Examples<span>Copyable binary IO examples.</span></a>
     <a href="binary-format-design.html">Binary Format Design<span>Format rules and safety expectations.</span></a>
     <a href="performance-notes.html">Performance Notes<span>Measured behavior and benchmark guidance.</span></a>

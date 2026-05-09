@@ -214,6 +214,7 @@ See [docs/rinha-dataset-benchmark.md](docs/rinha-dataset-benchmark.md) for detai
 ## Documentation
 
 - [Documentation site](https://arthurhoch.github.io/kiss-binary/)
+- [Versioned AI Skills](docs/skills/index.md)
 - [CAVEMAN.md](CAVEMAN.md) — compact project summary
 - [Product Specification](PRODUCT_SPEC.md)
 - [Implementation Plan](IMPLEMENTATION_PLAN.md)
